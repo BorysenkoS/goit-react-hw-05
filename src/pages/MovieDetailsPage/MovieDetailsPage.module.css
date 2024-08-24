@@ -1,0 +1,20 @@
+.movieDetailsPage {
+  display: flex;
+  gap: 20px;
+}
+
+.moviesDetailsTitle {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.moviesDetailsList {
+  list-style: none;
+  padding: 0;
+}
+
+.moviesDetailsText {
+  margin: 0;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
