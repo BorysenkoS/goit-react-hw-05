@@ -21,3 +21,17 @@ export const fetchMoviesDetails = async (moviesId) => {
 
   return response.data;
 };
+
+export const fetchMoviesCredits = async (moviesId) => {
+  const url = `https://api.themoviedb.org/3/movie/${moviesId}/credits`;
+  const response = await axios.get(url, options);
+
+  return response.data;
+};
+
+export const fetchMoviesReviews = async (moviesId) => {
+  const url = `https://api.themoviedb.org/3/movie/${moviesId}/reviews`;
+  const response = await axios.get(url, options);
+
+  return response.data;
+};

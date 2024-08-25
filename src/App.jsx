@@ -9,6 +9,8 @@ import { NavLink, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import MoviesPage from "./pages/MoviesPage/MoviesPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage/MovieDetailsPage";
+import MovieCast from "./components/MovieCast/MovieCast";
+import MovieReviews from "./components/MovieReviews/MovieReviews";
 
 function App() {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -51,10 +53,10 @@ function App() {
             }
           ></Route>
           <Route path="/movies" element={<MoviesPage />}></Route>
-          <Route
-            path="/movies/:moviesId"
-            element={<MovieDetailsPage />}
-          ></Route>
+          <Route path="/movies/:moviesId" element={<MovieDetailsPage />}>
+            <Route path="cast" element={<MovieCast />}></Route>
+            <Route path="reviews" element={<MovieReviews />}></Route>
+          </Route>
         </Routes>
       </main>
     </div>

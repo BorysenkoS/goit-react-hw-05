@@ -8,13 +8,15 @@ const HomePage = ({ movies }) => {
       <ul className={css.moviesList}>
         {movies.map((mov) => {
           return (
-            <Link
-              to={`/movies/${mov.id}`}
-              className={css.moviesItem}
-              key={mov.id}
-            >
-              {mov.title}
-            </Link>
+            <li className={css.moviesItem} key={mov.id}>
+              <Link
+                to={`/movies/${mov.id}`}
+                className={css.moviesLink}
+                key={mov.id}
+              >
+                {mov.title}
+              </Link>
+            </li>
           );
         })}
       </ul>

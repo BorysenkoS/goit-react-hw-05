@@ -18,3 +18,23 @@
   font-size: 18px;
   margin-bottom: 10px;
 }
+
+.describeOptions {
+  padding: 20px;
+}
+
+.moviesLinks {
+  display: flex;
+  gap: 30px;
+}
+
+.moviesLinkItem {
+  text-decoration: none;
+  font-size: 24px;
+  color: inherit;
+}
+
+.moviesLinkItem:hover,
+.moviesLinkItem:focus {
+  color: blue;
+}
