@@ -1,3 +1,6 @@
+.homePage {
+  padding: 20px;
+}
 .homePageTitle {
   margin-top: 0;
   margin-bottom: 20px;
@@ -8,20 +11,4 @@
   flex-direction: column;
   margin-top: 0;
   padding-left: 20px;
-}
-
-.moviesItem {
-  margin-bottom: 5px;
-  font-size: 16px;
-}
-
-.moviesItem:hover,
-.moviesItem:focus {
-  color: blue;
-  cursor: pointer;
-}
-
-.moviesLink {
-  text-decoration: none;
-  color: inherit;
 }

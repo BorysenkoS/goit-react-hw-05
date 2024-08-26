@@ -44,7 +44,7 @@ const MovieReviews = () => {
         ))
       ) : (
         <div className={css.reviewsMessage}>
-          Sorry, but we don&apos;t have any reviews for this movie...
+          <p>Sorry, but we don&apos;t have any reviews for this movie...</p>
         </div>
       )}
     </>

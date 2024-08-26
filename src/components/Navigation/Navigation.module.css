@@ -1,0 +1,21 @@
+.mainNav {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  box-shadow: 2px 2px 4px rgba(2, 2, 2, 0.5);
+}
+
+.headMain {
+  padding: 20px;
+}
+
+.link {
+  font-size: 18px;
+  text-decoration: none;
+  color: black;
+}
+
+.linkActive {
+  color: rgb(255, 85, 85);
+  transition: all 0.3s;
+}

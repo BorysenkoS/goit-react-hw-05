@@ -2,13 +2,15 @@ import css from "./MoviesPage.module.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 // import { lazy } from "react";
 
 import { fetchSearchMovies } from "../services/api";
 // const fetchSearchMovies = lazy(() => import("../services/api"));
 
 import { useEffect, useState } from "react";
+
+import MovieList from "../../components/MovieList/MovieList";
 
 const SearchMovies = Yup.object().shape({
   searchTerm: Yup.string()
@@ -24,8 +26,6 @@ const initialValues = {
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const location = useLocation();
 
   const query = searchParams.get("query");
 
@@ -71,23 +71,29 @@ const MoviesPage = () => {
         </Formik>
       </div>
       <div>
-        {movies.map((mov) => {
-          return (
-            <li className={css.moviesItem} key={mov.id}>
-              <Link
-                state={{ from: location }}
-                to={`/movies/${mov.id}`}
-                className={css.moviesLink}
-                key={mov.id}
-              >
-                {mov.title}
-              </Link>
-            </li>
-          );
-        })}
+        <ul className={css.moviesList}>
+          <MovieList trendingMovies={movies} />
+        </ul>
       </div>
     </div>
   );
 };
 
 export default MoviesPage;
+
+// {
+//   movies.map((mov) => {
+//     return (
+//       <li className={css.moviesItem} key={mov.id}>
+//         <Link
+//           state={{ from: location }}
+//           to={`/movies/${mov.id}`}
+//           className={css.moviesLink}
+//           key={mov.id}
+//         >
+//           {mov.title}
+//         </Link>
+//       </li>
+//     );
+//   });
+// }
