@@ -2,9 +2,11 @@ import css from "./MoviesPage.module.css";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
+// import { lazy } from "react";
 
 import { fetchSearchMovies } from "../services/api";
+// const fetchSearchMovies = lazy(() => import("../services/api"));
 
 import { useEffect, useState } from "react";
 
@@ -19,45 +21,24 @@ const initialValues = {
   searchTerm: "",
 };
 
-// useEffect(() => {
-//   if (searchValue.trim() === "") return;
-//   const fetchPhotosBySearchValue = async () => {
-//     try {
-//       setLoading(true);
-
-//       const data = await fetchPhotosApi(searchValue, pageNumber);
-
-//       setPhotos((prev) => [...prev, ...data.results]);
-//       setTotalPage(data.total_pages);
-//     } catch (error) {
-//       setError(error.message);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-//   fetchPhotosBySearchValue();
-// }, [searchValue, pageNumber]);
-
-// const onSubmit = (searchTerm) => {
-//   setPhotos([]);
-//   setSearchValue(searchTerm);
-//   setPageNumber(1);
-// };
-
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
-  const [searchMovies, setSearchMovies] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const location = useLocation();
+
+  const query = searchParams.get("query");
 
   useEffect(() => {
-    if (searchMovies.trim === "") return;
+    if (query === null) return;
     const searchMoviesBySearchValue = async () => {
-      const data = await fetchSearchMovies(searchMovies);
+      const data = await fetchSearchMovies(query);
       setMovies(data.results);
     };
     searchMoviesBySearchValue();
-  }, [searchMovies]);
+  }, [query]);
   const handleSubmit = (values, actions) => {
-    setSearchMovies(values.searchTerm);
+    setSearchParams({ query: values.searchTerm });
     actions.resetForm();
   };
   return (
@@ -94,6 +75,7 @@ const MoviesPage = () => {
           return (
             <li className={css.moviesItem} key={mov.id}>
               <Link
+                state={{ from: location }}
                 to={`/movies/${mov.id}`}
                 className={css.moviesLink}
                 key={mov.id}

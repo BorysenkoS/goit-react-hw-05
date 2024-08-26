@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams, Link, Outlet } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+import { useParams, Link, Outlet, useLocation } from "react-router-dom";
 
 import css from "./MovieDetailsPage.module.css";
 
@@ -13,6 +13,9 @@ const MovieDetailsPage = () => {
   const [moviesDetails, setMoviesDetails] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const location = useLocation();
+
+  const backLinkRef = useRef(location.state?.from ?? "/");
 
   useEffect(() => {
     const fetchMoviesByMoviesPage = async () => {
@@ -31,6 +34,9 @@ const MovieDetailsPage = () => {
 
   return (
     <>
+      <Link className={css.goBackLink} to={backLinkRef.current}>
+        Go back
+      </Link>
       {loading && <Loader />}
       {error !== null && <ErrorMessage errorMessage={error} />}
       {moviesDetails !== null && (

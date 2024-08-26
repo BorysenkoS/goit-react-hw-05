@@ -1,3 +1,9 @@
+.goBackLink {
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
 .movieDetailsPage {
   display: flex;
   gap: 20px;
