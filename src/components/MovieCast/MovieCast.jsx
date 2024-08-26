@@ -19,7 +19,6 @@ const MovieCast = () => {
       try {
         setLoading(true);
         const data = await fetchMoviesCredits(moviesId);
-        console.log(data);
         setMoviesCredits(data);
       } catch (error) {
         setError(error.message);
